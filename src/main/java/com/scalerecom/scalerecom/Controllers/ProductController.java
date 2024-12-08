@@ -1,9 +1,9 @@
 package com.scalerecom.scalerecom.Controllers;
 
 import com.scalerecom.scalerecom.Models.Product;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.scalerecom.scalerecom.Services.FSProductService;
+import com.scalerecom.scalerecom.Services.ProductService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
@@ -13,13 +13,20 @@ public class ProductController {
     // 3 for update a product
     // 4 for delete a product
 
-    @RequestMapping(value = "create_product", method = RequestMethod.POST)
+    private FSProductService fsProductService;
+
+    public ProductController(FSProductService fsProductService) {
+        this.fsProductService = fsProductService;
+    }
+
+    @PostMapping("/products")
     public void create_product(long product_id) {
 
     }
 
-    @RequestMapping(value = "getProduct", method = RequestMethod.GET)
-    public Product get_product(long product_id) {
+
+    @GetMapping("/product/{id}")
+    public Product get_product(@PathVariable("ud"), long product_id) {
         return null;
     }
 
