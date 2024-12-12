@@ -1,30 +1,30 @@
 package com.scalerecom.scalerecom.Models;
 
 public class Catagory {
-    private long id;
-    private String name;
+    private long catId;
+    private String catTitle;
 
     public Catagory() {
     }
 
     public Catagory(long id, String name) {
-        this.id = id;
-        this.name = name;
+        this.catId = id;
+        this.catTitle = name;
     }
 
-    public String getName() {
-        return name;
+    public long getCatId() {
+        return catId;
     }
 
-    public long getId() {
-        return id;
+    public void setCatId(long catId) {
+        this.catId = catId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getCatTitle() {
+        return catTitle;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCatTitle(String catTitle) {
+        this.catTitle = catTitle;
     }
 }

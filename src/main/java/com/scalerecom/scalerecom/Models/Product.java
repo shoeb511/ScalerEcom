@@ -1,5 +1,13 @@
 package com.scalerecom.scalerecom.Models;
 
+import jdk.jfr.Category;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Locale;
+@Getter
+@Setter
+
 public class Product {
     private long productId;
     private String title;
@@ -44,19 +52,19 @@ public class Product {
         this.description = description;
     }
 
-    public String getCategory() {
+    public Catagory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Catagory category) {
         this.category = category;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
