@@ -24,7 +24,7 @@ public class ProductController {
     public Product createProduct(@RequestBody Product product) {
         Product p = productService.createProduct(product.getProductId(),
                 product.getPrice(), product.getTitle(), product.getDescription(),
-                product.getCategory(), product.getImage_url());
+                product.getCategory().getCatTitle(), product.getImage_url());
         return p;
     }
 
@@ -42,7 +42,7 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("deletProduct/{id}")
+    @DeleteMapping("deleteProduct/{id}")
     public String delete_product(@PathVariable("id") long product_id) {
         System.out.println("Api of delete_product is starting here");
         productService.deleteProduct(product_id);

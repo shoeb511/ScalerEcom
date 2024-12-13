@@ -1,10 +1,8 @@
 package com.scalerecom.scalerecom.Models;
 
-import jdk.jfr.Category;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Locale;
 @Getter
 @Setter
 
@@ -12,14 +10,14 @@ public class Product {
     private long productId;
     private String title;
     private String description;
-    private Catagory category;
+    private Category category;
     private double price;
     private String image_url;
 
     public Product(){
     }
 
-    public Product(long productId, String title, String description, Catagory category, double price, String image_url) {
+    public Product(long productId, String title, String description, Category category, double price, String image_url) {
         this.productId = productId;
         this.title = title;
         this.description = description;
@@ -52,11 +50,11 @@ public class Product {
         this.description = description;
     }
 
-    public Catagory getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Catagory category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

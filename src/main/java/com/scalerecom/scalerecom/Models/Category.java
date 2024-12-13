@@ -1,13 +1,13 @@
 package com.scalerecom.scalerecom.Models;
 
-public class Catagory {
+public class Category {
     private long catId;
     private String catTitle;
 
-    public Catagory() {
+    public Category() {
     }
 
-    public Catagory(long id, String name) {
+    public Category(long id, String name) {
         this.catId = id;
         this.catTitle = name;
     }
