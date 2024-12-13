@@ -1,9 +1,8 @@
 package com.scalerecom.scalerecom.Services;
 
 import com.scalerecom.scalerecom.Dto.FakeStoreProductDto;
-import com.scalerecom.scalerecom.Models.Catagory;
+import com.scalerecom.scalerecom.Models.Category;
 import com.scalerecom.scalerecom.Models.Product;
-import com.scalerecom.scalerecom.configs.AppConfig;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,16 +31,16 @@ public class FSProductService implements ProductService{
     }
 
     @Override
-    public Product createProduct(long id, double price, String title, String description, Catagory catagory, String imageUrl) {
+    public Product createProduct(long id, double price, String title, String description, String category, String imageUrl) {
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
         fakeStoreProductDto.setId(id);
         fakeStoreProductDto.setTitle(title);
         fakeStoreProductDto.setDescription(description);
-        fakeStoreProductDto.setCategory(catagory.getCatTitle());
+        fakeStoreProductDto.setCategory(category);
         fakeStoreProductDto.setImage(imageUrl);
         fakeStoreProductDto.setPrice(price);
 
-        FakeStoreProductDto response = restTemplate.patchForObject(
+        FakeStoreProductDto response = restTemplate.postForObject(
                 "https://fakestoreapi.com/products",
                 fakeStoreProductDto, FakeStoreProductDto.class
                 );

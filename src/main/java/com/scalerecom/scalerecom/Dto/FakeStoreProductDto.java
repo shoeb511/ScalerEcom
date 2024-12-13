@@ -1,6 +1,6 @@
 package com.scalerecom.scalerecom.Dto;
 
-import com.scalerecom.scalerecom.Models.Catagory;
+import com.scalerecom.scalerecom.Models.Category;
 import com.scalerecom.scalerecom.Models.Product;
 //import lombok.Getter;
 //import lombok.Setter;
@@ -25,7 +25,7 @@ public class FakeStoreProductDto {
         //product.setCategory(category);
         product.setImage_url(image);
 
-        Catagory cat = new Catagory();
+        Category cat = new Category();
 
         cat.setCatTitle(category);
         product.setCategory(cat);
