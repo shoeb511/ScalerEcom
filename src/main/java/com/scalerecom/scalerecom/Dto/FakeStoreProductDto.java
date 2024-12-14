@@ -25,10 +25,11 @@ public class FakeStoreProductDto {
         //product.setCategory(category);
         product.setImage_url(image);
 
-        Category cat = new Category();
-
+        Category cat = new Category(12, category);
         cat.setCatTitle(category);
         product.setCategory(cat);
+
+
 
         return product;
 
