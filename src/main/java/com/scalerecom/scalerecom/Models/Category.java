@@ -1,23 +1,17 @@
 package com.scalerecom.scalerecom.Models;
 
-public class Category {
-    private long catId;
-    private String catTitle;
+import jakarta.persistence.Entity;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+@Entity
+public class Category extends BaseModel{
+    private String catTitle;
     public Category() {
     }
 
     public Category(long id, String name) {
-        this.catId = id;
+        this.id = id;
         this.catTitle = name;
-    }
-
-    public long getCatId() {
-        return catId;
-    }
-
-    public void setCatId(long catId) {
-        this.catId = catId;
     }
 
     public String getCatTitle() {

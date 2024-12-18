@@ -1,15 +1,17 @@
 package com.scalerecom.scalerecom.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 
-public class Product {
-    private long productId;
+@Entity
+public class Product extends BaseModel{
     private String title;
     private String description;
+
+    @ManyToOne
     private Category category;
     private double price;
     private String image_url;
@@ -18,7 +20,6 @@ public class Product {
     }
 
     public Product(long productId, String title, String description, Category category, double price, String image_url) {
-        this.productId = productId;
         this.title = title;
         this.description = description;
         this.category = category;
@@ -26,13 +27,6 @@ public class Product {
         this.image_url = image_url;
     }
 
-    public long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
 
     public String getTitle() {
         return title;

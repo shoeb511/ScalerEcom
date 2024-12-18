@@ -18,7 +18,7 @@ public class FakeStoreProductDto {
 
     public Product getProduct() {
         Product product = new Product();
-        product.setProductId(id);
+        product.setId(id);
         product.setTitle(title);
         product.setPrice(price);
         product.setDescription(description);

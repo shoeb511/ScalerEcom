@@ -29,7 +29,7 @@ public class ProductController {
     //CREATE PRODUCT API
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws BadRequestException {
-        Product p = productService.createProduct(product.getProductId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
+        Product p = productService.createProduct(product.getId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
         return new ResponseEntity<>(p, HttpStatus.CREATED);
     }
     //CREATE PRODUCT API
@@ -47,7 +47,7 @@ public class ProductController {
     //UPDATE PRODUCT API
     @PatchMapping("updateProduct/")
     public ResponseEntity<Product> update_product(@RequestBody Product product) {
-        Product p = productService.updateProduct(product.getProductId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
+        Product p = productService.updateProduct(product.getId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
     //UPDATE PRODUCT API
