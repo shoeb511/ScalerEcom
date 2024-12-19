@@ -1,0 +1,34 @@
+Index: src/main/java/com/scalerecom/scalerecom/Services/ProductService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/scalerecom/scalerecom/Services/ProductService.java b/src/main/java/com/scalerecom/scalerecom/Services/ProductService.java
+--- a/src/main/java/com/scalerecom/scalerecom/Services/ProductService.java	
++++ b/src/main/java/com/scalerecom/scalerecom/Services/ProductService.java	
+@@ -12,7 +12,7 @@
+ 
+     List<Product> getAllProducts();
+ 
+-    Product createProduct(double price, String title, String description, String category, String imageUrl) throws BadRequestException;
++    Product createProduct(double price, double productPrice, String title, String description, String category, String imageUrl) throws BadRequestException;
+ 
+     //List<Product> getAllProductsByCategoryId(long id);
+ 
+Index: src/main/java/com/scalerecom/scalerecom/Services/DBProductService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/scalerecom/scalerecom/Services/DBProductService.java b/src/main/java/com/scalerecom/scalerecom/Services/DBProductService.java
+--- a/src/main/java/com/scalerecom/scalerecom/Services/DBProductService.java	
++++ b/src/main/java/com/scalerecom/scalerecom/Services/DBProductService.java	
+@@ -33,7 +33,7 @@
+     }
+ 
+     @Override
+-    public Product createProduct( double price, String title, String description, String category, String imageUrl) throws BadRequestException {
++    public Product createProduct(double price, double productPrice, String title, String description, String category, String imageUrl) throws BadRequestException {
+         Product p = new Product();
+         p.setPrice(price);
+         p.setTitle(title);

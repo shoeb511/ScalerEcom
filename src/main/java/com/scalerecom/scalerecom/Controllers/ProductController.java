@@ -5,10 +5,12 @@ import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
 import com.scalerecom.scalerecom.Services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,14 +24,14 @@ public class ProductController {
 
 
 
-    public ProductController(ProductService productService) {
+    public ProductController(@Qualifier("DBProductService") ProductService productService) {
         this.productService = productService;
     }
 
     //CREATE PRODUCT API
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws BadRequestException {
-        Product p = productService.createProduct(product.getId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
+        Product p = productService.createProduct(product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
         return new ResponseEntity<>(p, HttpStatus.CREATED);
     }
     //CREATE PRODUCT API
@@ -37,9 +39,12 @@ public class ProductController {
 
     //GET SINGLE PRODUCT API
     @GetMapping("product/{id}")
-    public ResponseEntity<Product> get_product(@PathVariable("id") long product_id) throws ProductNotFoundException {
-        Product p = productService.getSingleProduct(product_id);
-        return new ResponseEntity<>(p, HttpStatus.OK);
+    public ResponseEntity<Optional<Product>> get_product(@PathVariable("id") long product_id) throws ProductNotFoundException {
+        Optional<Product> p = productService.getSingleProduct(product_id);
+        if(p.isPresent()) {
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+        throw new ProductNotFoundException("Product with id " + product_id + " not found in the database");
     }
     //GET SINGLE PRODUCT API
 
