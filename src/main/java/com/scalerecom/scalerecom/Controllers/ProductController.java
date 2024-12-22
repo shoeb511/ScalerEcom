@@ -1,6 +1,7 @@
 package com.scalerecom.scalerecom.Controllers;
 
 import com.scalerecom.scalerecom.Dto.ErrorDto;
+import com.scalerecom.scalerecom.Models.Category;
 import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
@@ -74,6 +75,15 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
     //GET ALL PRODUCTS API
+
+
+    //CREATE ENTRIES IN CATEGORY TABLE
+//    @PostMapping("category")
+//    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws BadRequestException {
+//
+//    }
+
+
 
 // EXCEPTION HANDLING METHODS
 
