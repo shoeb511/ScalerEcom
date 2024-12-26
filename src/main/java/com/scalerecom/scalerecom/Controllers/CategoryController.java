@@ -27,6 +27,16 @@ public class CategoryController {
         return new ResponseEntity<>(cat, HttpStatus.CREATED);
     }
 
+    @GetMapping("category")
+    public ResponseEntity<List<Category>> getAllCategories() {
+        return new ResponseEntity<>(dbCategoryService.getAllCategories(), HttpStatus.OK);
+    }
+
+    @GetMapping("category/{name}")
+    public ResponseEntity<Optional<Category>> getCategoryByNmae(@PathVariable ("name") String name) {
+        return new ResponseEntity<>(dbCategoryService.getCategoryByName(name), HttpStatus.OK);
+    }
+
 //    @GetMapping("category/{title}")
 //    public ResponseEntity<List<Category>> getAllCategories(@PathVariable("title") String catTitle) {
 //        //dbCategoryService.getAllCategoriesByTitle(catTitle);

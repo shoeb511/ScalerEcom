@@ -6,6 +6,7 @@ import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.repository.CategoryRepository;
 import com.scalerecom.scalerecom.repository.ProductRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -60,8 +61,9 @@ public class DBProductService implements ProductService {
     }
 
     @Override
-    public void deleteProduct(long id) {
-
+    public ResponseEntity<String> deleteProduct(long id) {
+        productRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @Override

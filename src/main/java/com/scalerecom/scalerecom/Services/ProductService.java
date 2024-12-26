@@ -3,6 +3,7 @@ package com.scalerecom.scalerecom.Services;
 import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public interface ProductService {
 
     //Product createProduct(Product product);
 
-    void deleteProduct(long id);
+    ResponseEntity<String> deleteProduct(long id);
 
     Product updateProduct(long id, double price, String title, String description, String category, String imageUrl);
 

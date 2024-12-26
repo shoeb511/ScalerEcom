@@ -5,6 +5,7 @@ import com.scalerecom.scalerecom.repository.CategoryRepository;
 import com.scalerecom.scalerecom.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,8 @@ public class DBCategoryService implements CategoryService {
     }
 
     @Override
-    public Optional<Category> getCategory(String name) {
+    public Optional<Category> getCategoryByName(String name) {
+        System.out.println("this is the category you are searching for");
         Optional<Category> category = categoryRepository.findByCatTitle(name);
         return category;
     }
@@ -29,5 +31,16 @@ public class DBCategoryService implements CategoryService {
         newCategory.setCatTitle(categoryName);
         categoryRepository.save(newCategory);
         return Optional.of(newCategory);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+        categoryRepository.findAll().forEach(category -> categories.add(category));
+        return categories;
+    }
+
+    public Optional<Category> createCategory(String catTitle) {
+        return null;
     }
 }

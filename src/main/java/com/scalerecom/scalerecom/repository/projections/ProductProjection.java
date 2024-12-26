@@ -1,7 +1,7 @@
 package com.scalerecom.scalerecom.repository.projections;
 
 public interface ProductProjection {
-    String getId();
+    long getId();
     String getTitle();
     String getDescription();
 }
