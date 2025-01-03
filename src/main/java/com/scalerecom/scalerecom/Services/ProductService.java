@@ -16,11 +16,14 @@ public interface ProductService {
 
     Product createProduct(double price, String title, String description, String category, String imageUrl) throws BadRequestException;
 
+
     //List<Product> getAllProductsByCategoryId(long id);
 
     //Product createProduct(Product product);
 
     ResponseEntity<String> deleteProduct(long id);
+
+    Product createProduct(long id, double price, String title, String description, String category, String imageUrl) throws BadRequestException;
 
     Product updateProduct(long id, double price, String title, String description, String category, String imageUrl);
 

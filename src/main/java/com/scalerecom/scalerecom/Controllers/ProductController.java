@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     //CREATE PRODUCT API
-    @PostMapping("/products")
+    @PostMapping("/product")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws BadRequestException {
         Product p = productService.createProduct(product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
         return new ResponseEntity<>(p, HttpStatus.CREATED);
@@ -51,7 +51,7 @@ public class ProductController {
 
 
     //UPDATE PRODUCT API
-    @PatchMapping("updateProduct/")
+    @PatchMapping("product")
     public ResponseEntity<Product> update_product(@RequestBody Product product) {
         Product p = productService.updateProduct(product.getId(), product.getPrice(), product.getTitle(), product.getDescription(), product.getCategory().getCatTitle(), product.getImage_url());
         return new ResponseEntity<>(p, HttpStatus.OK);
@@ -60,7 +60,7 @@ public class ProductController {
 
 
     //DELETE PRODUCT API
-    @DeleteMapping("deleteProduct/{id}")
+    @DeleteMapping("product/{id}")
     public ResponseEntity<String> delete_product(@PathVariable("id") long product_id) {
         return productService.deleteProduct(product_id);
         //return new ResponseEntity<>("Product deleted", HttpStatus.ACCEPTED);
@@ -69,7 +69,7 @@ public class ProductController {
 
 
     //GET ALL PRODUCTS API
-    @GetMapping("getAllProducts")
+    @GetMapping("products")
     public ResponseEntity<List<Product>> getAllProducts() {
         productService.getAllProducts();
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);

@@ -32,14 +32,17 @@ public class DBProductService implements ProductService {
         }
         return product;
     }
-
+    //====================================================================================
     @Override
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
         productRepository.findAll().forEach(products::add);
         return products;
     }
+    //====================================================================================
 
+
+    //====================================================================================
     @Override
     public Product createProduct( double price, String title, String description, String category, String imageUrl) throws BadRequestException {
         Product p = new Product();
@@ -59,15 +62,40 @@ public class DBProductService implements ProductService {
         Product savedProduct = productRepository.save(p);
         return savedProduct;
     }
+    //====================================================================================
 
+
+    //====================================================================================
     @Override
     public ResponseEntity<String> deleteProduct(long id) {
         productRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+    //====================================================================================
 
+
+    //====================================================================================
     @Override
     public Product updateProduct(long id, double price, String title, String description, String category, String imageUrl) {
-        return null;
+        Product p = new Product();
+        p.setId(id);
+        p.setPrice(price);
+        p.setTitle(title);
+        p.setDescription(description);
+        p.setImage_url(imageUrl);
+
+        Optional<Category> currCat = categoryRepository.findByCatTitle(category);
+        if(currCat.isPresent()) {
+            p.setCategory(currCat.get());
+        }
+        else{
+            Category newCat = new Category();
+            newCat.setCatTitle(category);
+            categoryRepository.save(newCat);
+            p.setCategory(newCat);
+        }
+        productRepository.save(p);
+        return p;
     }
+    //====================================================================================
 }
