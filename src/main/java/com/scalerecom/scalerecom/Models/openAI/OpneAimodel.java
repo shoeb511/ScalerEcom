@@ -3,7 +3,6 @@ package com.scalerecom.scalerecom.Models.openAI;
 public class OpneAimodel {
 
     private String url = "https://api.openai.com/v1/chat/completions";
-    private String key = "sk-proj-5aQm8wcdm8KH6lVlcv56WTp7NEh8xN5Xsv2dvJXgyxsWbF6EmlYOw4DI8wkitDdCD8l-py4pT3BlbkFJKvYdWs-Q_1HlBndI57nGUO18mttGkuQt-LoidH2R1o0Dam3uNW9vuOpkvtqQhO1blxGZd89aAA";
     private String model = "gpt-3.5-turbo";
     //private Message message = new Message();
 
