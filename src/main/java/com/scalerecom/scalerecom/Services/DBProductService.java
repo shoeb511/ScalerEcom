@@ -71,6 +71,11 @@ public class DBProductService implements ProductService {
         productRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public Product createProduct(long id, double price, String title, String description, String category, String imageUrl) throws BadRequestException {
+        return null;
+    }
     //====================================================================================
 
 

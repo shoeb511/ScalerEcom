@@ -73,7 +73,7 @@ public class FSProductService implements ProductService{
 
     @Override
     public Product createProduct(long id, double price, String title, String description, String category, String imageUrl)  {
-        System.out.println("inside the fsproductservice service's updateProduct method");
+        System.out.println("inside the fsproductservice service's createProduct method");
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
         fakeStoreProductDto.setId(id);
         fakeStoreProductDto.setTitle(title);
@@ -82,11 +82,11 @@ public class FSProductService implements ProductService{
         fakeStoreProductDto.setImage(imageUrl);
         fakeStoreProductDto.setPrice(price);
 
-        FakeStoreProductDto response = fsrestTemplate.patchForObject(
+        FakeStoreProductDto response = fsrestTemplate.postForObject(
                 "https://fakestoreapi.com/products",
                 fakeStoreProductDto, FakeStoreProductDto.class
         );
-        System.out.println("now the product is updated with id: " + id);
+        System.out.println("now the product is created with id: " + id);
         return response.getProduct();
     }
 
@@ -96,19 +96,17 @@ public class FSProductService implements ProductService{
     public Product updateProduct(long id, double price, String title, String description, String category, String imageUrl) {
         System.out.println("inside the fsproductservice service's updateProduct method");
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
-        fakeStoreProductDto.setId(id);
+
         fakeStoreProductDto.setTitle(title);
         fakeStoreProductDto.setDescription(description);
         fakeStoreProductDto.setCategory(category);
         fakeStoreProductDto.setImage(imageUrl);
         fakeStoreProductDto.setPrice(price);
 
-        FakeStoreProductDto response = fsrestTemplate.patchForObject(
-                "https://fakestoreapi.com/products",
-                fakeStoreProductDto, FakeStoreProductDto.class
-        );
-        System.out.println("now the product is updated with id: " + id);
-        return response.getProduct();
+        fsrestTemplate.put("https://fakestoreapi.com/products/" + id, fakeStoreProductDto);
+        System.out.println("Printing new values");
+        System.out.println(fakeStoreProductDto.toString());
+        return fakeStoreProductDto.getProduct();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.scalerecom.scalerecom.Controllers;
 
 import com.scalerecom.scalerecom.Dto.ErrorDto;
-import com.scalerecom.scalerecom.Models.Category;
 import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
@@ -15,7 +14,7 @@ import java.util.Optional;
 
 
 @RestController
-public class ProductController {
+public class DBProductController {
     private final ProductService productService;
     // this controller will caontains the APIs around products, CRUD operations for the product
     // 1 api for create a product.
@@ -25,7 +24,7 @@ public class ProductController {
 
 
 
-    public ProductController(@Qualifier("DBProductService") ProductService productService) {
+    public DBProductController(@Qualifier("DBProductService") ProductService productService) {
         this.productService = productService;
     }
 

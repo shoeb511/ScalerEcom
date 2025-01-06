@@ -23,7 +23,7 @@ public class FakestoreProductController {
 
     @PostMapping("fsproduct")
     public Product createProduct(@RequestBody FakeStoreProductDto fakeStoreProductDto) throws BadRequestException {
-        Product product = fsProductService.createProduct(fakeStoreProductDto.getPrice(), fakeStoreProductDto.getTitle(), fakeStoreProductDto.getDescription(), fakeStoreProductDto.getCategory(), fakeStoreProductDto.getImage());
+        Product product = fsProductService.createProduct(fakeStoreProductDto.getId(), fakeStoreProductDto.getPrice(), fakeStoreProductDto.getTitle(), fakeStoreProductDto.getDescription(), fakeStoreProductDto.getCategory(), fakeStoreProductDto.getImage());
         return product;
     }
 
@@ -39,7 +39,7 @@ public class FakestoreProductController {
         return product;
     }
 
-    @PatchMapping("fsproduct")
+    @PutMapping("fsproduct")
     public Product updateProduct(@RequestBody FakeStoreProductDto fakeStoreProductDto) throws BadRequestException {
         Product product = fsProductService.updateProduct(fakeStoreProductDto.getId(), fakeStoreProductDto.getPrice(), fakeStoreProductDto.getTitle(), fakeStoreProductDto.getDescription(), fakeStoreProductDto.getCategory(), fakeStoreProductDto.getImage());
         return product;
