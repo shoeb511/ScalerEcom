@@ -6,10 +6,12 @@ import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.repository.CategoryRepository;
 import com.scalerecom.scalerecom.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,14 +34,31 @@ public class DBProductService implements ProductService {
         }
         return product;
     }
-    //====================================================================================
+    //================================================================================
+
+
+    //pagination for get all products
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> products = new ArrayList<>();
-        productRepository.findAll().forEach(products::add);
+    public Page<Product> getAllProducts(int pageNumber, int pageSize, String feildName) {
+        Page<Product> products = productRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(feildName).ascending()));
         return products;
     }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return null;
+    }
     //====================================================================================
+//    @Override
+//    public List<Product> getAllProducts() {
+//        List<Product> products = new ArrayList<>();
+//        productRepository.findAll().forEach(products::add);
+//        return products;
+//    }
+    //====================================================================================
+
+
+
 
 
     //====================================================================================

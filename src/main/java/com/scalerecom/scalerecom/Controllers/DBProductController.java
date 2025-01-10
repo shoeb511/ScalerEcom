@@ -5,7 +5,9 @@ import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
 import com.scalerecom.scalerecom.Services.ProductService;
+import jakarta.persistence.NamedStoredProcedureQuery;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -69,9 +71,9 @@ public class DBProductController {
 
     //GET ALL PRODUCTS API
     @GetMapping("products")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        productService.getAllProducts();
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    public ResponseEntity<Page<Product>> getAllProducts(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize, @RequestParam("feildName") String feildName) {
+        Page<Product> products = productService.getAllProducts(pageNumber, pageSize, feildName);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
     //GET ALL PRODUCTS API
 

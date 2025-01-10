@@ -6,6 +6,7 @@ import com.scalerecom.scalerecom.Services.FSProductService;
 import com.scalerecom.scalerecom.Services.ProductService;
 import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class FakestoreProductController {
 
     @GetMapping("fsproducts")
     public List<Product> getAllProducts() {
-        List<Product> products = fsProductService.getAllProducts();
+        List<Product> products = (List<Product>) fsProductService.getAllProducts();
         return products;
     }
 

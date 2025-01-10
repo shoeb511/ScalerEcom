@@ -4,6 +4,7 @@ import com.scalerecom.scalerecom.Dto.FakeStoreProductDto;
 import com.scalerecom.scalerecom.exception.BadRequestException;
 import com.scalerecom.scalerecom.exception.ProductNotFoundException;
 import com.scalerecom.scalerecom.Models.Product;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -36,8 +37,10 @@ public class FSProductService implements ProductService{
         return product;
     }
 
-
-
+    @Override
+    public Page<Product> getAllProducts(int pageNumber, int pageSize, String feildName) {
+        return null;
+    }
 
 
     @Override

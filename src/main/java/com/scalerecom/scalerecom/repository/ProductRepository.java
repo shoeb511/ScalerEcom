@@ -3,6 +3,8 @@ package com.scalerecom.scalerecom.repository;
 import com.scalerecom.scalerecom.Models.Category;
 import com.scalerecom.scalerecom.Models.Product;
 import com.scalerecom.scalerecom.repository.projections.ProductProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,8 +23,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // update
 
-
-
+    @Override
+    Page<Product> findAll(Pageable pageable);
 
     // This will insert product records in my product table
     Product save(Product product);
