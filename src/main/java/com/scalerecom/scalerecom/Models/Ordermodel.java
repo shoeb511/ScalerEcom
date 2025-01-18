@@ -1,7 +1,5 @@
 package com.scalerecom.scalerecom.Models;
-
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +31,6 @@ public class Ordermodel extends BaseModel {
         this.amount = amount;
         this.productIdList = productIdList;
     }
-
-
 
     public List<Long> getProductIdList() {
         return productIdList;

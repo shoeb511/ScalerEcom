@@ -1,5 +1,8 @@
 package com.scalerecom.scalerecom.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -13,8 +16,10 @@ public class Category extends BaseModel{
     public Category() {
     }
 
-//    @OneToMany (mappedBy = "category", fetch = FetchType.LAZY)
-//    private List<Product> products;
+
+    @OneToMany (mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Product> products;
 
     public Category(long id, String name) {
         this.id = id;
@@ -29,11 +34,11 @@ public class Category extends BaseModel{
         this.catTitle = catTitle;
     }
 
-//    public List<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(List<Product> products) {
-//        this.products = products;
-//    }
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 }

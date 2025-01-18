@@ -1,5 +1,7 @@
 package com.scalerecom.scalerecom.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -12,6 +14,7 @@ public class Product extends BaseModel{
     private String description;
 
     @ManyToOne
+    @JsonBackReference
     private Category category;
     private double price;
     private String image_url;
