@@ -9,6 +9,7 @@ import com.scalerecom.scalerecom.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +19,31 @@ import java.util.Optional;
 @Service
 public class DBProductService implements ProductService {
 
-    ProductRepository productRepository;
-    CategoryRepository categoryRepository;
-    public DBProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    private ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
+    private RedisTemplate redisTemplate;
+    public DBProductService(ProductRepository productRepository, CategoryRepository categoryRepository, RedisTemplate redisTemplate) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.redisTemplate = redisTemplate;
     }
 
 
     @Override
-    public Optional<Product> getSingleProduct(long id) throws ProductNotFoundException {
-        Optional<Product> product = productRepository.findById(id);
+    public Product getSingleProduct(long id) throws ProductNotFoundException {
+
+        Product redisProduct = (Product) redisTemplate.opsForHash().get("PRODUCTS", "product" + id);
+        if (redisProduct != null) {
+            // cache hit
+            return redisProduct;
+        }
+
+        Product product = productRepository.findById(id);
         if (product == null) {
             throw new ProductNotFoundException("product not found in database");
         }
+
+        redisTemplate.opsForHash().put("PRODUCTS", "product" + id, product);
         return product;
     }
     //================================================================================

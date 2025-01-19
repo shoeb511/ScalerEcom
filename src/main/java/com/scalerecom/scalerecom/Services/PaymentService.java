@@ -5,7 +5,7 @@ import com.stripe.exception.StripeException;
 import org.springframework.http.ResponseEntity;
 
 public interface PaymentService {
-    public String makePayment(long orderId, long amount) throws StripeException;
+    public String makePayment(String orderId, long amount) throws StripeException;
 
     //ResponseEntity<String> orderStatus(long orderId1);
 }

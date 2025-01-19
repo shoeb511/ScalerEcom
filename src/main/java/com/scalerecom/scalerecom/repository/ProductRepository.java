@@ -35,7 +35,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Create a query like this "Select * from product where description = description;"
     Product findByDescription(String description);
 
-
+    Product findById(long id);
      //Implement HQL
     @Query("select p from Product p where p.category.catTitle =:catTitle")
     List<Product> getProductByCatTitle(@Param("catTitle") String catTitle);

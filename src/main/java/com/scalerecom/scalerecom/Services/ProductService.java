@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    Optional<Product> getSingleProduct(long id) throws ProductNotFoundException;
+    Product getSingleProduct(long id) throws ProductNotFoundException;
 
     //Page<Product> getAllProducts(int pageNumber, int pageSize, String feildName);
 

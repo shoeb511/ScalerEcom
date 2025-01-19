@@ -8,6 +8,7 @@ import com.scalerecom.scalerecom.Services.ProductService;
 import jakarta.persistence.NamedStoredProcedureQuery;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class DBProductController {
 
 
 
+
     public DBProductController(@Qualifier("DBProductService") ProductService productService) {
         this.productService = productService;
     }
@@ -41,9 +43,10 @@ public class DBProductController {
 
     //GET SINGLE PRODUCT API
     @GetMapping("product/{id}")
-    public ResponseEntity<Optional<Product>> get_product(@PathVariable("id") long product_id) throws ProductNotFoundException {
-        Optional<Product> p = productService.getSingleProduct(product_id);
-        if(p.isPresent()) {
+    public ResponseEntity<Product> get_product(@PathVariable("id") long product_id) throws ProductNotFoundException {
+
+        Product p = productService.getSingleProduct(product_id);
+        if(p != null) {
             return new ResponseEntity<>(p, HttpStatus.OK);
         }
         throw new ProductNotFoundException("Product with id " + product_id + " not found in the database");

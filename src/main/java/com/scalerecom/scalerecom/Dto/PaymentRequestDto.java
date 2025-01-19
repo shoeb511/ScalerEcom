@@ -1,14 +1,14 @@
 package com.scalerecom.scalerecom.Dto;
 
 public class PaymentRequestDto {
-    long orderId;
+    String orderId;
     long amount;
 
-    public long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
